@@ -85,7 +85,10 @@ public class Configurator extends javax.swing.JFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            	String tabelaStados = txtStates.getText();
+            	System.out.println(tabelaStados);
+            	
+               // jButton1ActionPerformed(evt);
             }
         });
 

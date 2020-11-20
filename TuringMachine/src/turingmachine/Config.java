@@ -6,6 +6,7 @@
 package turingmachine;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -14,10 +15,11 @@ import java.util.ArrayList;
 public class Config {
     private String fita;
     private String StartState;
-    private ArrayList states;
     private String StartHead;
+    private List<State> states;
 
-    public Config(String fita, String StartState, String sh) {
+    public Config(String fita, String StartState, String sh, List<State> s) {
+        this.states = s;
         this.fita = fita;
         this.StartState = StartState;
         this.StartHead = sh;
@@ -29,10 +31,6 @@ public class Config {
 
     public String getStartState() {
         return StartState;
-    }
-
-    public ArrayList getStates() {
-        return states;
     }
 
     public void setFita(String fita) {
@@ -53,6 +51,10 @@ public class Config {
 
     public void setStartHead(String StartHead) {
         this.StartHead = StartHead;
+    }
+
+    public List<State> getStates() {
+        return states;
     }
     
 

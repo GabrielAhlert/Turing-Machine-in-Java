@@ -21,19 +21,34 @@ public class Node {
     }
     
     public Node add(String data){
-        return this.next = new Node(data);
+        
+            Node temp =new Node(data);
+            temp.prev = this;
+            this.next = temp;
+            return temp;
+
+
+
     }
     
     public Node getNext(){
-        if(this.next == null)
-            return(this.next = new Node());
+        if(this.next == null){
+            Node temp = new Node();
+            this.next = temp;
+            temp.prev = this;     
+            return(temp);   
+        }
         else
             return (this.next);
     }
     
     public Node getPrev(){
-        if(this.prev == null)
-            return(this.prev = new Node());
+        if(this.prev == null){
+            Node temp = new Node();
+            temp.next = this;
+            this.prev = temp;
+            return(temp);
+        }
         else
             return (this.prev);
     }

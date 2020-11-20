@@ -13,11 +13,24 @@ import javax.swing.JFrame;
  */
 public class Configurator extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Configurator
-     */
+    
+    
     public Configurator() {
         initComponents();
+    }
+    
+    private Node getFita(){
+        String fita = txtInput.getText();
+        Node lista = new Node();
+        Node temp = lista;
+        int i = 0;
+        while(i<fita.length()){
+                
+            System.out.println("1");
+            temp = temp.add(String.valueOf(fita.charAt(i)));
+            i++;
+        }
+        return lista;
     }
 
     /**
@@ -165,8 +178,10 @@ public class Configurator extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        JFrame frame = new Runing();
-        frame.setVisible(true);
+        Config config = new Config();
+        JFrame f =new Runing();
+        
+        f.setVisible(true);
         dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed

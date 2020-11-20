@@ -15,22 +15,41 @@ public class Runing extends javax.swing.JFrame {
      * Creates new form Runing
      */
     
+        public Runing() {
+        initComponents();
+        fita = getFita();
+    }
+    
+    
+    Node fita;
+    Config config;
+    
+    public void SetConfig(Config c){
+        config = c;
+    }
     
     private Node getFita(){
-            String fita = jTextField18.getText();
-            Node lista = new Node();
-            Node temp = lista;
-            int i = 0;
-            while(i<fita.length()){
+        String fita = jTextField18.getText();
+        Node lista = new Node();
+        Node temp = lista;
+        int i = 0;
+        while(i<fita.length()){
                 
-                System.out.println("1");
-                temp = temp.add(String.valueOf(fita.charAt(i)));
-                i++;
-            }
-            return lista;
+            System.out.println("1");
+            temp = temp.add(String.valueOf(fita.charAt(i)));
+            i++;
         }
+        return lista;
+    }
     
-    private void attFita(Node n){
+    private void Fita(){
+        fita = getFita();
+    }
+    
+    private void attFita(){
+        
+        
+        Node n = fita; 
         jTextField9.setText(n.data);
         n = n.getNext();
         jTextField10.setText(n.data);
@@ -42,13 +61,35 @@ public class Runing extends javax.swing.JFrame {
         jTextField13.setText(n.data);
         n = n.getNext();
         jTextField14.setText(n.data);
+        n = n.getNext();
+        jTextField15.setText(n.data);
+        n = n.getNext();
+        jTextField16.setText(n.data);
+        n = n.getNext();
+        jTextField17.setText(n.data);
+        
+        n = fita;
+        n = n.getPrev();
+        jTextField8.setText(n.data);
+        n = n.getPrev();
+        jTextField7.setText(n.data);
+        n = n.getPrev();
+        jTextField6.setText(n.data);
+        n = n.getPrev();
+        jTextField5.setText(n.data);
+        n = n.getPrev();
+        jTextField4.setText(n.data);
+        n = n.getPrev();
+        jTextField3.setText(n.data);
+        n = n.getPrev();
+        jTextField2.setText(n.data);
+        n = n.getPrev();
+        jTextField1.setText(n.data);
     }
-    public Runing() {
-        initComponents();
-        
-        
-        
-    }
+
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,6 +120,7 @@ public class Runing extends javax.swing.JFrame {
         jTextField17 = new javax.swing.JTextField();
         jTextField18 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -244,6 +286,13 @@ public class Runing extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -288,7 +337,10 @@ public class Runing extends javax.swing.JFrame {
                         .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -297,7 +349,8 @@ public class Runing extends javax.swing.JFrame {
                 .addGap(175, 175, 175)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 291, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,9 +456,15 @@ public class Runing extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField17ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        attFita(getFita());
+        Fita();
+        attFita();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        fita = fita.getNext();
+        attFita();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -444,6 +503,7 @@ public class Runing extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;

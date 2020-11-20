@@ -24,6 +24,8 @@ public class Runing extends javax.swing.JFrame {
     private List<State> states;
     private String currentValue;
     private State usingState;
+    AcaoEntrada acao;
+    
     
         public Runing() {
         initComponents();
@@ -65,13 +67,34 @@ public class Runing extends javax.swing.JFrame {
                 cicle = 1;
                 break;
             case 1:
-                for(int i = 0;i>=states.size();i++){
+                for(int i = 0;i<=states.size();i++){
                     if(states.get(i).nome.contains(currentState)){
                         usingState= states.get(i);
                         currentState = usingState.nome;
                         break;
                     }
                 }
+                for(int i = 0;i<=usingState.getAcoesPorEntrada().size();i++){
+                    if(usingState.getAcoesPorEntrada().get(i).entradas.get(0).contains(currentValue)){
+                        acao= usingState.getAcoesPorEntrada().get(i);
+                        currentTransition = acao.toString();
+                        cicle = 2;
+                        break;
+                    }
+                }
+                break;
+            case 2:
+                
+                fita.data = acao.writeCaractere;
+                
+                currentState = acao.proximoEstado;
+                
+                if(acao.direcao.contains("direita"))
+                    fita = fita.getNext();
+                else
+                    fita = fita.getPrev();
+                cicle = 0;
+                break;
         }
         
         attAll();

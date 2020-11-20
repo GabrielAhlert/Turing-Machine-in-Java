@@ -56,7 +56,6 @@ public class Configurator extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
         txtInput.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtInput.setText("1011");
         txtInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtInputActionPerformed(evt);
@@ -64,13 +63,11 @@ public class Configurator extends javax.swing.JFrame {
         });
 
         txtStartState.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtStartState.setText("state1");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel2.setText("Entrada");
 
         txtStartHead.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtStartHead.setText("0");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Estado Inicial");
@@ -81,7 +78,6 @@ public class Configurator extends javax.swing.JFrame {
         txtStates.setColumns(20);
         txtStates.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
         txtStates.setRows(5);
-        txtStates.setText("\n");
         jScrollPane1.setViewportView(txtStates);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -245,19 +241,36 @@ public class Configurator extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         txtStates.setText("state1:\n" +
-"	<0> write 0, direita, state1&\n" +
-"	<1> write 1, direita, state1&\n" +
-"	< > write *, esquerda, state2&;\n" +
-"	\n" +
-"state2:\n" +
-"	<0> write 1, esquerda, done&\n" +
-"	< > write 1, esquerda, done&\n" +
-"	<1> write 0, esquerda, state2&;\n" +
-"");
+            "	<0> write 0, direita, state1&\n" +
+            "	<1> write 1, direita, state1&\n" +
+            "	< > write *, esquerda, state2&;\n" +
+            "	\n" +
+            "state2:\n" +
+            "	<0> write 1, esquerda, done&\n" +
+            "	< > write 1, esquerda, done&\n" +
+            "	<1> write 0, esquerda, state2&;\n" +
+            "");
+        txtStartState.setText("state1");
+        txtInput.setText("1011");
+        txtStartHead.setText("0");
+        
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        txtStates.setText(" ");
+        txtStates.setText("procurando:\n" +
+            "<0,1,2,3,4,5,6,7,8,9,/,*,-,+,x> write $, direita, procurando&\n" +
+            "<(> write x, direita, achou&\n" +
+            "< > write 1, fica, done&;\n" +
+            "achou:\n" +
+            "<0,1,2,3,4,5,6,7,8,9,/,*,-,+,x,(> write $, direita, achou&\n" +
+            "<)> write x, esquerda, voltar&;\n" +
+            "voltar:\n" +
+            "<0,1,2,3,4,5,6,7,8,9,/,*,-,+,x,(,)> write $, esquerda,voltar&\n" +
+            "< > write $, direita , procurando&;");
+        txtInput.setText("()()(())");
+        txtStartState.setText("procurando");
+        txtStartHead.setText("0");
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

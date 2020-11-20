@@ -5,8 +5,6 @@
  */
 package turingmachine;
 
-import javax.swing.JFrame;
-
 /**
  *
  * @author gabri
@@ -17,7 +15,7 @@ public class TuringMachine {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame frame = new Configurator();
+        Configurator frame = new Configurator();
         frame.setVisible(true);
     }
     

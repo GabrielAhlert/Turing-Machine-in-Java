@@ -5,6 +5,9 @@
  */
 package turingmachine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 
 /**
@@ -85,7 +88,51 @@ public class Configurator extends javax.swing.JFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+            	String tabelaStados = txtStates.getText().replaceAll("\n", "");
+            	String Estados[] = tabelaStados.split(";");
+            	List<State> states = new ArrayList<State>();
+               // jButton1ActionPerformed(evt);
+            	for (String string : Estados) {
+					State stateTemp = new State();
+					String temp[] = string.split(":");//[0] nome do estado, [1] parametros
+					stateTemp.setNome(temp[0].replaceAll(" ", ""));//pegar o nome do statdo
+					
+					//System.out.println(temp[1]);// temp[1] tem o resto dos argumentos
+					String restoTemp1 = temp[1];
+					//System.out.println(restoTemp1 + " teste ");
+					
+					String Teste[] = restoTemp1.split("&");
+					for(int i = 0; i < Teste.length; i++) {//numero de parametros por estado
+						//System.out.println(Teste[i]);
+						AcaoEntrada acaoEntrada = new AcaoEntrada();
+						String Temp2[] = Teste[i].split(">");
+						//Temp2[1] -> parametros
+						String parametros = Temp2[1];
+						String Parametros[] = parametros.trim().split(",");
+						//System.out.println("----");
+						String writeCaractere[] = Parametros[0].split("write");
+						acaoEntrada.setWriteCaractere(writeCaractere[1]);
+						acaoEntrada.setDirecao(Parametros[1].trim());
+						acaoEntrada.setProximoEstado(Parametros[2].trim());
+					//	System.out.println(acaoEntrada.toString());
+						
+						//Temp2[0] -> entradas
+						String entradas = Temp2[0].replace("<", "");
+					//	System.out.println(entradas);
+						String Temp3[] = entradas.split(",");
+						for(int j = 0; j < Temp3.length; j++) {
+						//	System.out.println(Temp3[j]);
+							acaoEntrada.addEntrada(Temp3[j]);
+						}
+						stateTemp.addAcaoesPorEntrada(acaoEntrada);
+					}
+					
+					//final
+					states.add(stateTemp);
+				}
+            	for(State s : states) {
+            	 System.out.println(s.toString());
+            	}
             }
         });
 

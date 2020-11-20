@@ -63,6 +63,7 @@ public class Runing extends javax.swing.JFrame {
     private void pulse(){
         switch(cicle){
             case 0:
+                currentTransition = "";
                 currentValue = fita.data;
                 cicle = 1;
                 break;
@@ -75,10 +76,11 @@ public class Runing extends javax.swing.JFrame {
                     }
                 }
                 for(int i = 0;i<=usingState.getAcoesPorEntrada().size();i++){
-                    if(usingState.getAcoesPorEntrada().get(i).entradas.get(0).contains(currentValue)){
+                    if(usingState.getAcoesPorEntrada().get(i).entradas.contains(currentValue)){
                         acao= usingState.getAcoesPorEntrada().get(i);
                         currentTransition = acao.toString();
                         cicle = 2;
+                        
                         break;
                     }
                 }

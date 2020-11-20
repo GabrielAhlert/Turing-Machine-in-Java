@@ -5,8 +5,8 @@ import java.util.List;
 
 public class AcaoEntrada {
 	List<String> entradas;//para quais entrada devesse executar os comando abaico
-	char whiteCaractere;//definir qual caractere a maquina deve escrever conforme a entrada
-	char direcao;//determina a direcao que a fita deve se mover conforme a entrada
+	String writeCaractere;//definir qual caractere a maquina deve escrever conforme a entrada
+	String direcao;//determina a direcao que a fita deve se mover conforme a entrada
 	String proximoEstado;//qual estado deve ser chamado conforme a entrada
 
 	public void addEntrada(String a) {
@@ -19,8 +19,6 @@ public class AcaoEntrada {
 
 	public AcaoEntrada( char whiteCaractere, char direcao, String proximoEstado) {
 		super();
-		this.whiteCaractere = whiteCaractere;
-		this.direcao = direcao;
 		this.proximoEstado = proximoEstado;
 	}
 
@@ -32,24 +30,30 @@ public class AcaoEntrada {
 		this.entradas = entradas;
 	}
 
-	public char getWhiteCaractere() {
-		return whiteCaractere;
+	public String getWriteCaractere() {
+		return writeCaractere;
 	}
 
-	public void setWhiteCaractere(char whiteCaractere) {
-		this.whiteCaractere = whiteCaractere;
+	public void setWriteCaractere(String whiteCaractere) {
+		this.writeCaractere = whiteCaractere;
 	}
 
-	public char getDirecao() {
+	public String getDirecao() {
 		return direcao;
 	}
 
-	public void setDirecao(char direcao) {
+	public void setDirecao(String direcao) {
 		this.direcao = direcao;
 	}
 
 	public String getProximoEstado() {
 		return proximoEstado;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "direcao " + this.direcao + "write caracter " + this.writeCaractere + " proximo estado " + this.proximoEstado;
 	}
 
 	public void setProximoEstado(String proximoEstado) {

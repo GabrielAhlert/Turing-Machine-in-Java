@@ -88,41 +88,45 @@ public class Configurator extends javax.swing.JFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	String tabelaStados = txtStates.getText();
+            	String tabelaStados = txtStates.getText().replaceAll("\n", "");
             	String Estados[] = tabelaStados.split(";");
             	List<State> states = new ArrayList<State>();
                // jButton1ActionPerformed(evt);
             	for (String string : Estados) {
 					State stateTemp = new State();
 					String temp[] = string.split(":");//[0] nome do estado, [1] parametros
-					stateTemp.setNome(temp[0].replaceAll("\n", "").replaceAll(" ", ""));//pegar o nome do statdo
-					//System.out.println("Estado-> " + nomeTemp[0]);	
+					stateTemp.setNome(temp[0].replaceAll(" ", ""));//pegar o nome do statdo
 					
-					//temp[1] toda a entrada - o nome do estado				
-				
-					//temp[
-					String temp2[] = temp[1].split("<");//sepa cada conjunto de arugmento
-					for(String conjuntoDeParametros : temp2) {
-						AcaoEntrada acaoEntradaTemp = new AcaoEntrada();
-						//System.out.println(a);
-						String temp3[] = conjuntoDeParametros.split(">");//adiciona o parametro na lista
-						System.out.println("-----");
+					//System.out.println(temp[1]);// temp[1] tem o resto dos argumentos
+					String restoTemp1 = temp[1];
+					//System.out.println(restoTemp1 + " teste ");
+					
+					String Teste[] = restoTemp1.split("&");
+					for(int i = 0; i < Teste.length; i++) {//numero de parametros por estado
+						//System.out.println(Teste[i]);
+						AcaoEntrada acaoEntrada = new AcaoEntrada();
+						String Temp2[] = Teste[i].split(">");
+						//Temp2[1] -> parametros
+						String parametros = Temp2[1];
+						String Parametros[] = parametros.trim().split(",");
+						System.out.println("----");
+						String writeCaractere[] = Parametros[0].split("write");
+						acaoEntrada.setWriteCaractere(writeCaractere[1]);
+						acaoEntrada.setDirecao(Parametros[1].trim());
+						acaoEntrada.setProximoEstado(Parametros[2].trim());
+						System.out.println(acaoEntrada.toString());
 						
-						//temp3[1] deve ter os agumentos
-					//	System.out.println(temp3[1]);
-						
-						String temp4[] = temp3[0].split(",");//separa cada argumento
-						for(String entrada : temp4) {
-							acaoEntradaTemp.addEntrada(entrada);//guardando os paramentrosde entrada para determinada acao
-							System.out.println(entrada);
-						}
+						//Temp2[] -> entradas
+						//todo
 						
 					}
-//					
+					
 					//final
 					states.add(stateTemp);
 				}
-            	//System.out.println(states.get(1).getNome());
+            	for(State s : states) {
+            		//System.out.println(s.getNome());
+            	}
             }
         });
 

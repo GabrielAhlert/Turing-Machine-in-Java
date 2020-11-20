@@ -5,6 +5,9 @@
  */
 package turingmachine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JFrame;
 
 /**
@@ -86,9 +89,40 @@ public class Configurator extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             	String tabelaStados = txtStates.getText();
-            	System.out.println(tabelaStados);
-            	
+            	String Estados[] = tabelaStados.split(";");
+            	List<State> states = new ArrayList<State>();
                // jButton1ActionPerformed(evt);
+            	for (String string : Estados) {
+					State stateTemp = new State();
+					String temp[] = string.split(":");//[0] nome do estado, [1] parametros
+					stateTemp.setNome(temp[0].replaceAll("\n", "").replaceAll(" ", ""));//pegar o nome do statdo
+					//System.out.println("Estado-> " + nomeTemp[0]);	
+					
+					//temp[1] toda a entrada - o nome do estado				
+				
+					//temp[
+					String temp2[] = temp[1].split("<");//sepa cada conjunto de arugmento
+					for(String conjuntoDeParametros : temp2) {
+						AcaoEntrada acaoEntradaTemp = new AcaoEntrada();
+						//System.out.println(a);
+						String temp3[] = conjuntoDeParametros.split(">");//adiciona o parametro na lista
+						System.out.println("-----");
+						
+						//temp3[1] deve ter os agumentos
+					//	System.out.println(temp3[1]);
+						
+						String temp4[] = temp3[0].split(",");//separa cada argumento
+						for(String entrada : temp4) {
+							acaoEntradaTemp.addEntrada(entrada);//guardando os paramentrosde entrada para determinada acao
+							System.out.println(entrada);
+						}
+						
+					}
+//					
+					//final
+					states.add(stateTemp);
+				}
+            	//System.out.println(states.get(1).getNome());
             }
         });
 

@@ -43,7 +43,7 @@ public class Configurator extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtStates = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("StartHead");
@@ -64,75 +64,31 @@ public class Configurator extends javax.swing.JFrame {
         txtStartState.setText("state1");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel2.setText("Input");
+        jLabel2.setText("Entrada");
 
         txtStartHead.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         txtStartHead.setText("0");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel4.setText("StartState");
+        jLabel4.setText("Estado Inicial");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel5.setText("States and Transitions");
+        jLabel5.setText("Estados e Transiçoes");
 
         txtStates.setColumns(20);
         txtStates.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
         txtStates.setRows(5);
+        txtStates.setText("state1: <0> write 1, Direita, state1&;");
         jScrollPane1.setViewportView(txtStates);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel7.setText("StartHead");
+        jLabel7.setText("Posição da Cabeça");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jButton1.setText("Run!");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOk.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnOk.setText("Ok!");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-            	String tabelaStados = txtStates.getText().replaceAll("\n", "");
-            	String Estados[] = tabelaStados.split(";");
-            	List<State> states = new ArrayList<State>();
-               // jButton1ActionPerformed(evt);
-            	for (String string : Estados) {
-					State stateTemp = new State();
-					String temp[] = string.split(":");//[0] nome do estado, [1] parametros
-					stateTemp.setNome(temp[0].replaceAll(" ", ""));//pegar o nome do statdo
-					
-					//System.out.println(temp[1]);// temp[1] tem o resto dos argumentos
-					String restoTemp1 = temp[1];
-					//System.out.println(restoTemp1 + " teste ");
-					
-					String Teste[] = restoTemp1.split("&");
-					for(int i = 0; i < Teste.length; i++) {//numero de parametros por estado
-						//System.out.println(Teste[i]);
-						AcaoEntrada acaoEntrada = new AcaoEntrada();
-						String Temp2[] = Teste[i].split(">");
-						//Temp2[1] -> parametros
-						String parametros = Temp2[1];
-						String Parametros[] = parametros.trim().split(",");
-						//System.out.println("----");
-						String writeCaractere[] = Parametros[0].split("write");
-						acaoEntrada.setWriteCaractere(writeCaractere[1]);
-						acaoEntrada.setDirecao(Parametros[1].trim());
-						acaoEntrada.setProximoEstado(Parametros[2].trim());
-					//	System.out.println(acaoEntrada.toString());
-						
-						//Temp2[0] -> entradas
-						String entradas = Temp2[0].replace("<", "");
-					//	System.out.println(entradas);
-						String Temp3[] = entradas.split(",");
-						for(int j = 0; j < Temp3.length; j++) {
-						//	System.out.println(Temp3[j]);
-							acaoEntrada.addEntrada(Temp3[j]);
-						}
-						stateTemp.addAcaoesPorEntrada(acaoEntrada);
-					}
-					
-					//final
-					states.add(stateTemp);
-				}
-            	for(State s : states) {
-            	 System.out.println(s.toString());
-            	}
+                btnOkActionPerformed(evt);
             }
         });
 
@@ -145,14 +101,10 @@ public class Configurator extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnOk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtStartHead, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -186,9 +138,9 @@ public class Configurator extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 328, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE))
                 .addGap(31, 31, 31))
         );
 
@@ -210,15 +162,60 @@ public class Configurator extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtInputActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        String tabelaStados = txtStates.getText().replaceAll("\n", "");
+        String Estados[] = tabelaStados.split(";");
+        List<State> states = new ArrayList<State>();
+        // jButton1ActionPerformed(evt);
+        for (String string : Estados) {
+            State stateTemp = new State();
+            String temp[] = string.split(":");//[0] nome do estado, [1] parametros
+            stateTemp.setNome(temp[0].replaceAll(" ", ""));//pegar o nome do statdo
+
+            //System.out.println(temp[1]);// temp[1] tem o resto dos argumentos
+            String restoTemp1 = temp[1];
+            //System.out.println(restoTemp1 + " teste ");
+
+            String Teste[] = restoTemp1.split("&");
+            for(int i = 0; i < Teste.length; i++) {//numero de parametros por estado
+                //System.out.println(Teste[i]);
+                AcaoEntrada acaoEntrada = new AcaoEntrada();
+                String Temp2[] = Teste[i].split(">");
+                //Temp2[1] -> parametros
+                String parametros = Temp2[1];
+                String Parametros[] = parametros.trim().split(",");
+                //System.out.println("----");
+                String writeCaractere[] = Parametros[0].split("write");
+                acaoEntrada.setWriteCaractere(writeCaractere[1]);
+                acaoEntrada.setDirecao(Parametros[1].trim());
+                acaoEntrada.setProximoEstado(Parametros[2].trim());
+                //	System.out.println(acaoEntrada.toString());
+
+                //Temp2[0] -> entradas
+                String entradas = Temp2[0].replace("<", "");
+                //	System.out.println(entradas);
+                String Temp3[] = entradas.split(",");
+                for(int j = 0; j < Temp3.length; j++) {
+                    //	System.out.println(Temp3[j]);
+                    acaoEntrada.addEntrada(Temp3[j]);
+                }
+                stateTemp.addAcaoesPorEntrada(acaoEntrada);
+            }
+
+            //final
+            states.add(stateTemp);
+        }
+        for(State s : states) {
+            System.out.println(s.toString());
+        }
+        
         Runing f =new Runing();
-        Config con = new Config(txtInput.getText(),txtStartState.getText(),txtStartHead.getText());
+        Config con = new Config(txtInput.getText(),txtStartState.getText(),txtStartHead.getText(),states);
         f.SetConfig(con);
         f.setVisible(true);
         dispose();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnOkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,7 +253,7 @@ public class Configurator extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnOk;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

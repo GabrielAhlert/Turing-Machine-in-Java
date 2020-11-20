@@ -53,7 +53,7 @@ public class AcaoEntrada {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "direcao " + this.direcao + "write caracter " + this.writeCaractere + " proximo estado " + this.proximoEstado;
+		return "direcao " + this.direcao + "write caracter " + this.writeCaractere + " proximo estado " + this.proximoEstado + " Entradas" + this.entradas.toString();
 	}
 
 	public void setProximoEstado(String proximoEstado) {

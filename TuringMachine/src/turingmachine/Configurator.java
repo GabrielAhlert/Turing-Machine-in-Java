@@ -109,23 +109,29 @@ public class Configurator extends javax.swing.JFrame {
 						//Temp2[1] -> parametros
 						String parametros = Temp2[1];
 						String Parametros[] = parametros.trim().split(",");
-						System.out.println("----");
+						//System.out.println("----");
 						String writeCaractere[] = Parametros[0].split("write");
 						acaoEntrada.setWriteCaractere(writeCaractere[1]);
 						acaoEntrada.setDirecao(Parametros[1].trim());
 						acaoEntrada.setProximoEstado(Parametros[2].trim());
-						System.out.println(acaoEntrada.toString());
+					//	System.out.println(acaoEntrada.toString());
 						
-						//Temp2[] -> entradas
-						//todo
-						
+						//Temp2[0] -> entradas
+						String entradas = Temp2[0].replace("<", "");
+					//	System.out.println(entradas);
+						String Temp3[] = entradas.split(",");
+						for(int j = 0; j < Temp3.length; j++) {
+						//	System.out.println(Temp3[j]);
+							acaoEntrada.addEntrada(Temp3[j]);
+						}
+						stateTemp.addAcaoesPorEntrada(acaoEntrada);
 					}
 					
 					//final
 					states.add(stateTemp);
 				}
             	for(State s : states) {
-            		//System.out.println(s.getNome());
+            	 System.out.println(s.toString());
             	}
             }
         });

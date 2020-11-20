@@ -19,19 +19,6 @@ public class Configurator extends javax.swing.JFrame {
         initComponents();
     }
     
-    private Node getFita(){
-        String fita = txtInput.getText();
-        Node lista = new Node();
-        Node temp = lista;
-        int i = 0;
-        while(i<fita.length()){
-                
-            System.out.println("1");
-            temp = temp.add(String.valueOf(fita.charAt(i)));
-            i++;
-        }
-        return lista;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -178,9 +165,9 @@ public class Configurator extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Config config = new Config();
-        JFrame f =new Runing();
-        
+        Runing f =new Runing();
+        Config con = new Config(txtInput.getText(),txtStartState.getText(),txtStartHead.getText());
+        f.SetConfig(con);
         f.setVisible(true);
         dispose();
         

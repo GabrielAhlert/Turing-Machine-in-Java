@@ -14,42 +14,47 @@ public class Runing extends javax.swing.JFrame {
     /**
      * Creates new form Runing
      */
+    Node fita;
+    Config config;
+    String currentState;
     
         public Runing() {
         initComponents();
-        fita = getFita();
+        //fita = config.fita;
     }
-    
-    
-    Node fita;
-    Config config;
-    
-    public void SetConfig(Config c){
-        config = c;
-    }
-    
+        
     private Node getFita(){
-        String fita = jTextField18.getText();
+        String s = config.getFita();
         Node lista = new Node();
         Node temp = lista;
-        int i = 0;
-        while(i<fita.length()){
-                
-            System.out.println("1");
-            temp = temp.add(String.valueOf(fita.charAt(i)));
+        int i = 1;
+        if(!s.isEmpty())
+        temp.data = String.valueOf(s.charAt(0));
+        while(i<s.length()){
+            temp = temp.add(String.valueOf(s.charAt(i)));
             i++;
         }
+        lista = configureHead(lista);
         return lista;
     }
-    
-    private void Fita(){
+    private Node configureHead(Node l){
+        for (int i = 0; i < Integer.parseInt(config.getStartHead()); i++) {
+            l = l.getNext();
+        }
+        return l;
+    }    
+
+    public void SetConfig(Config c){
+        config = c;
         fita = getFita();
+        attFita();
+        currentState = config.getStartState();
     }
     
     private void attFita(){
         
         
-        Node n = fita; 
+        Node n = fita;
         jTextField9.setText(n.data);
         n = n.getNext();
         jTextField10.setText(n.data);
@@ -456,7 +461,7 @@ public class Runing extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField17ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Fita();
+        fita = fita.getPrev();
         attFita();
     }//GEN-LAST:event_jButton1ActionPerformed
 

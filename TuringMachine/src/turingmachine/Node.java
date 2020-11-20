@@ -21,14 +21,11 @@ public class Node {
     }
     
     public Node add(String data){
-        
+
             Node temp =new Node(data);
             temp.prev = this;
             this.next = temp;
             return temp;
-
-
-
     }
     
     public Node getNext(){

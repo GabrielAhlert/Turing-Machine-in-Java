@@ -7,6 +7,11 @@ public class State {
 	String nome;
 	List<AcaoEntrada> acoesPorEntrada;
 
+	public void addAcaoesPorEntrada(AcaoEntrada acaoEntrada) {
+		
+		this.acoesPorEntrada.add(acaoEntrada);
+	}
+	
 	public State() {
 		acoesPorEntrada =  new ArrayList<AcaoEntrada>();
 	}
@@ -32,6 +37,10 @@ public class State {
 	public void setAcoesPorEntrada(List<AcaoEntrada> acoesPorEntrada) {
 		this.acoesPorEntrada = acoesPorEntrada;
 	}
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "nome: " + this.nome + "acoes " + this.acoesPorEntrada.toString();
+	}
 	
 }

@@ -81,7 +81,7 @@ public class Configurator extends javax.swing.JFrame {
         txtStates.setColumns(20);
         txtStates.setFont(new java.awt.Font("Monospaced", 0, 20)); // NOI18N
         txtStates.setRows(5);
-        txtStates.setText("state1:\n\t<0> write 0, direita, state1&\n\t<1> write 1, direita, state1&\n\t< > write *, esquerda, state2&;\n\t\nstate2:\n\t<0> write 1, esquerda, done&\n\t< > write 1, esquerda, done&\n\t<1> write 0, esquerda, state2&;\n");
+        txtStates.setText("\n");
         jScrollPane1.setViewportView(txtStates);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
